@@ -1,5 +1,5 @@
 # FFA-Transition-Files
-This contains all of the programs to create and test FFAG cells and Transitions:
+This contains all of the programs to create and test FFA cells and Transitions:
 
 1) FFACalc 1 and 2
 
