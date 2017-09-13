@@ -1,5 +1,5 @@
 '''''''''''''''''''''''''''''''''''''''''''''
-This is to ease the process for FFAG stuff
+This is to ease the process for FFA stuff
 '''''''''''''''''''''''''''''''''''''''''''''
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 '''''''''''''''''''''''''''''''''
-parameters for the FFAG Below
+parameters for the FFA Below
 '''''''''''''''''''''''''''''''''
 Massp = 938.27208	# Mass of a Proton (MeV/c^2)
 e = 1.602177E-19	# Elementary Charge
