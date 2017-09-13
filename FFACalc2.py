@@ -1,3 +1,7 @@
+###################################################################################
+#This file is designed to create Dejan's unit cell with observation points for PTC#
+###################################################################################
+
 file_object = open("JGC.seq","w")
 file_object2 = open("TROBVP.SEQ","w")
 file_object.write("QF: QUADRUPOLE,L=0.1,K1=9.25; \n"+
