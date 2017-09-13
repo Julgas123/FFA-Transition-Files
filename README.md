@@ -1,7 +1,7 @@
-# FFAG-Transition-Files
+# FFA-Transition-Files
 This contains all of the programs to create and test FFAG cells and Transitions:
 
-1) FFAGCalc 1 and 2
+1) FFACalc 1 and 2
 
 These files are the original files I used to create input files for MADX; they're a good way to get an idea of how a cell must 
 be generated in order to use PTC_TRACK
@@ -30,7 +30,7 @@ CHANGED BEFORE ORBIT PLOTTER 1 WILL WORK; inside of the main PTC loop, the 'PTC_
 'PTC_TWISS_SUMMARY'
 
 
-5) FFAG Gantries and Adiabatic Transitions (PDF)
+5) FF Gantries and Adiabatic Transitions (PDF)
 
 This is the slideshow that was presented at the 2017 Fixed-Field Accelerator conference at Cornell. 
 
@@ -44,8 +44,16 @@ OrbitPlotter 1 and 2).
 
 7) AccToGantry.SEQ
 
-This is the input file for JGC.MADX.  To get it to run, change the input file in JGC to the name of this file.  Moreover, the initial conditions for the twiss parameters must be entered to match that which would come out of the Linac/Synchrotron/Cyclotron. In this case, BetX0=BetY0=1.2, DX=0.0. 
+This is the input file for JGC.MADX.  To get it to run, change the input file in JGC to the name of this file.  Moreover, the 
+initial conditions for the twiss parameters must be entered to match that which would come out of the Linac / Synchrotron / 
+Cyclotron. In this case, BetX0=BetY0=1.2, DX=0.0. 
 
+
+8) JGC.MADX
+
+This is the main file to be run with MADX. It should be placed in the same directory as the 'madx' executable along with all of 
+the necessary input files (which in its raw, unedited state should simply be 'JGC.SEQ'). By uncommenting some of the blocks, 
+different outputs are created which can be used by the 'OrbitPlotter' programs. 
 
 -------------------------------------------------------------------------------------------------------------------------------
 If there are any questions, please contact me and I will try my best to answer them.  
