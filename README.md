@@ -28,10 +28,10 @@ into 'JGC.SEQ' before running it again. Then, repreat.
 
 4) OrbitPlotter1 and 2
 
-These are files designed to plot the outputs from JGC.MADX (they're normally called aug17i_"something") - Orbit plotter 1 is 
-designed to plot the PTC_TWISS output files, where as OrbitPlotter 2 is designed to output the normal TWISS files. PLEASE 
-NOTE: THE PTC_TWISS LOOP IN JGC.MADX MUST BE CHANGED BEFORE ORBIT PLOTTER 1 WILL WORK; inside of the main PTC loop, the 
-'PTC_TWISS' table must be changed to 'PTC_TWISS_SUMMARY'
+These are files designed to plot the outputs from 'JGC.MADX' and 'SingleCell.MADX' (they're normally called aug17i_"something") 
+- Orbit plotter 1 is designed to plot the PTC_TWISS output files, where as OrbitPlotter 2 is designed to output the normal 
+TWISS files. PLEASE NOTE: THE PTC_TWISS LOOP IN JGC.MADX MUST BE CHANGED BEFORE ORBIT PLOTTER 1 WILL WORK; inside of the main 
+PTC loop, the 'PTC_TWISS' table must be changed to 'PTC_TWISS_SUMMARY'
 
 
 5) FF Gantries and Adiabatic Transitions (PDF)
