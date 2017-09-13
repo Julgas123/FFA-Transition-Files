@@ -54,5 +54,12 @@ different outputs are created which can be used by the 'OrbitPlotter' programs. 
 would provide after one run is that which is used as the Acclerator-to-Gantry transition in the slideshow. The SEQ file can be written by the TransitionCalc programs.  
 
 
+8) Theory
+
+Though the scripts here are unique, the method of adiabtic matching is well defined for the CBETA ERL accelerator from Cornell 
+and BNL. Information can be found here:
+-The CBETA ERL: https://www.classe.cornell.edu/CBETA_PM/
+-The method of Adiabatic Matching and the role of the transition: https://www.classe.cornell.edu/CBETA_PM/notes/CBETA013.pdf
+
 -------------------------------------------------------------------------------------------------------------------------------
 If there are any questions/comments/concerns, please contact me at Julgas123@gmail.com and I will try my best to answer them.  
