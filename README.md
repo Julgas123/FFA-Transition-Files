@@ -37,7 +37,7 @@ This is the slideshow that was presented at the 2017 Fixed-Field Accelerator con
 
 6) SingleCell
 
-This file is that which was created to find and test the periodic conditions of a unit cell. It contains methods to vary the  
+This file is that which was created to find and test the periodic conditions of a unit cell. It contains methods to vary the 
 quadrupole and dipole K strengths as well as methods to test the stability over the entire range of momenta desired (see 
 OrbitPlotter 1 and 2).  
 
