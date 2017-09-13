@@ -34,5 +34,18 @@ CHANGED BEFORE ORBIT PLOTTER 1 WILL WORK; inside of the main PTC loop, the 'PTC_
 
 This is the slideshow that was presented at the 2017 Fixed-Field Accelerator conference at Cornell. 
 
+
+6) SingleCell
+
+This file is that which was created to find and test the periodic conditions of a unit cell. It contains methods to vary the  
+quadrupole and dipole K strengths as well as methods to test the stability over the entire range of momenta desired (see 
+OrbitPlotter 1 and 2).  
+
+
+7) AccToGantry.SEQ
+
+This is the input file for JGC.MADX.  To get it to run, change the input file in JGC to the name of this file.  Moreover, the initial conditions for the twiss parameters must be entered to match that which would come out of the Linac/Synchrotron/Cyclotron. In this case, BetX0=BetY0=1.2, DX=0.0. 
+
+
 -------------------------------------------------------------------------------------------------------------------------------
 If there are any questions, please contact me and I will try my best to answer them.  
