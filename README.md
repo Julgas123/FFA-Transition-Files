@@ -19,7 +19,11 @@ textwrangler (which I believe uses python 3.6??) - otherwise, one must change 'i
 These are my babies.  I'm so proud :') Anyway, these are used to create a transition. The first file uses Dejan Trbojevic's 
 patented unit cell from his carbon gantry and changes it over a user-inputted number of cells. The second file is what I used 
 for my transition presented in the FFAG'17 workshop at Cornell - it can be used as an example to test the transition... 
-JGC.MADX and JGC.SEQ are files created specifically for this, so they must be downloaded to run TransitionCalc2
+JGC.MADX and JGC.SEQ are files created specifically for this, so they must be used alongside TransitionCalc2 (which 
+actuallycreates them). After running 'JGC.MADX', the new magnet strengths must be copy/pasted from the terminal to the 
+'JGC.SEQ' file. Sometimes, it may not match all of the way, and the strengths of the magnets will not have changed from the 
+original input. Try identifying a pattern and making an educated guess about what the strengths could/should be and put that 
+into 'JGC.SEQ' before running it again. Then, repreat. 
 
 
 4) OrbitPlotter1 and 2
@@ -42,18 +46,12 @@ quadrupole and dipole K strengths as well as methods to test the stability over 
 OrbitPlotter 1 and 2).  
 
 
-7) AccToGantry.SEQ
-
-This is the input file for JGC.MADX.  To get it to run, change the input file in JGC to the name of this file.  Moreover, the 
-initial conditions for the twiss parameters must be entered to match that which would come out of the Linac / Synchrotron / 
-Cyclotron. In this case, BetX0=BetY0=1.2, DX=0.0. 
-
-
-8) JGC.MADX
+7) JGC.MADX and JGC.SEQ
 
 This is the main file to be run with MADX. It should be placed in the same directory as the 'madx' executable along with all of 
 the necessary input files (which in its raw, unedited state should simply be 'JGC.SEQ'). By uncommenting some of the blocks, 
-different outputs are created which can be used by the 'OrbitPlotter' programs. 
+different outputs are created which can be used by the 'OrbitPlotter' programs. Currently, it's set up such that the output it 
+would provide after one run is that which is used as the Acclerator-to-Gantry transition in the slideshow. The SEQ file can be written by the TransitionCalc programs.  
 
 -------------------------------------------------------------------------------------------------------------------------------
-If there are any questions, please contact me and I will try my best to answer them.  
+If there are any questions, please contact me at Julgas123@gmail.com and I will try my best to answer them.  
