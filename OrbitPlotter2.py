@@ -1,22 +1,45 @@
-'''
-This file is designed to read in data from a file, parse it, and graph it
-'''
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#This file is designed to read in data from a file, parse it, and graph it#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+
+##################################
+#These are the initial parameters#
+##################################
 
 MassP = .938272
 KineticEnergy = .150 #MeV
 Gamma = KineticEnergy/MassP + 1
 Beta = np.sqrt(1 - (1/Gamma)**2)
 
+
+
+##############################################
+#This only works with the STANDARD TWISS LOOP#
+##############################################
+
 class Grapher(object):
 	
-	# This is designed for the output of the REGULAR TWISS loop
+	
+	
+	############################################
+	#This constructor opens the file to read it#
+	############################################
+	
 	def __init__(self):
 		self.file_object = open("AUG17I.LIS","r")
 		self.reader()
 	
-	# This creates lists
+	
+	
+	
+	##########################################
+	#This function creates the relevant lists#
+	##########################################
+	
 	def reader(self):
 		line = self.file_object.readline()
 		s = []
@@ -47,14 +70,27 @@ class Grapher(object):
 		K = int((len(Linetemp)-1)/177) # It was discovered that the first line of the file is ignored (hence the -1)
 		i = 0
 		#print(Linetemp)
-		while i <= K:
-			if i <= 1:
+		
+		
+		
+		#################################################################################################
+		#This loop appends the data for each energy (NUMBERS MUST BE CHANGED IF NUMBER OF CELLS CHANGES)#
+		#################################################################################################
+		while i <= K :
+			if i < 1:
 				Linetemp2.append(Linetemp[47:176]) # 176 (the lengths of the cell portions - 2) because for some reason if we don't it doesn't parse correctly
 				i = i + 1
-			elif i > 1:
+			elif i >= 1:
 				Linetemp2.append(Linetemp[(47+177*i):(176+177*i)]) # This gets each of the data tables; ignores the rest
 				i = i + 1
 		#print(Linetemp2) # Diagnostics
+		
+		
+		
+		#########################################################
+		#This loop effectively gets rid of one layer of brackets#
+		#########################################################
+		
 		for j in range(0,len(Linetemp2)):
 			Linetemp3.append([j])
 			Linetemp3[j] = []
@@ -65,16 +101,18 @@ class Grapher(object):
 		Linetemp1 = []
 		Linetemp2 = []
 		#print(Linetemp3[0])
+		
+		
+		
+		######################################################
+		#This loop gets rid of extras and cleans up the lists#
+		######################################################
+		
 		for l in range(0,len(Linetemp3)):
 			Linetemp4.append(Linetemp3[l])
-		for m in range(0,len(Linetemp4)): # This takes away extras which arise due to the parsing
-			for n in range(0,len(Linetemp4[m])):
-				Linetemp4[m][n] = Linetemp4[m][n][:-1]
 		for m in range(0,len(Linetemp4)): # This takes away the name of each piece of the cell
 			for n in range(0,len(Linetemp4[m])):
 				Linetemp4[m][n] = Linetemp4[m][n][1:]
-		#Linetemp4[-1]=Linetemp4[-1][:-1]
-		#print(Linetemp4[-1])
 		passes = []
 		for i in range(0,len(Linetemp4)):
 			for k in range(0,len(Linetemp4[i])):
@@ -90,8 +128,15 @@ class Grapher(object):
 				counter1=counter1+1
 		counter2=0 
 		#print(passes)
-		I = len(passes)/129
-		for i in range(0,int(I)): # This creates empty lists
+		
+		
+		
+		#####################################################
+		#This loop appends the relevant variable to its list#
+		#####################################################
+	
+		I = len(passes)/130 #(177-47)
+		for i in range(0,int(I+1)): # This creates empty lists
 			s.append([i])
 			betax.append([i])
 			betay.append([i])
@@ -140,22 +185,29 @@ class Grapher(object):
 				dy[i].append(float(passes[j+129*i][12]))
 				dpy[i].append(float(passes[j+129*i][13]))
 				y[i].append(float(passes[j+129*i][14]))
-				#py[i].append(passes[i*j][15])
 		Linetemp3=[]
 		Linetemp4=[]
-		passes=[]
+		#passes=[]
 		self.GraphMaker(s,betax,betay,mvar1,alfx,mux,dx,dpx,x,px,alfy,muy,dy,dpy,y,py)
 
+
+
+
+	##########################################
+	#This function is pretty self explanatory#
+	##########################################
+	
 	def GraphMaker(self,s,betax,betay,mvar1,alfx,mux,dx,dpx,x,px,alfy,muy,dy,dpy,y,py):
+		#DPPi = -0.40
+		#DPPf = 0.30
+		#DPPstep = 0.10
+		#DPPlength = int(1+(DPPf-DPPi)/DPPstep)
 		#dpp = []
 		#dpplabel = []
-		#dpplabel = ["∂p/p=0.5","∂p/p=0.4","∂p/p=0.3","∂p/p=0.2","∂p/p=0.1","∂p/p=0.0","∂p/p=-0.1"]
-		#dpplabel2 = []
-		#for i in range(0, len(dpplabel)):
-		#	dpplabel2.append(dpplabel[-i])
-		#for i in range(0, 20):
-			#dpp.append(0.5-0.05*i)
-			#dpplabel.append("dpp = "+str(dpp[i]))
+		#for i in range(0,(DPPlength)+1):
+		#	dpp.append(DPPi+i*DPPstep)
+		#for i in range(0, len(dpp)):
+		#	dpplabel.append("∂p/p="+str(dpp[i]))
 		#dpplabel.reverse()
 		self.s = s
 		self.betax = betax
@@ -173,26 +225,64 @@ class Grapher(object):
 		self.dpy = dpy
 		self.y = y
 		self.py = py
+		
+		
+		
+		########################
+		#This plots Beta X vs S#
+		########################
 		for i in range(0,len(s)):
 			plt.plot(self.s[i], self.betax[i])#, label=dpplabel[i])
 		plt.xlabel('S')
 		plt.ylabel('Beta X')
 		#plt.legend(loc='best')
 		plt.show()
+		
+		
+		
+		########################
+		#This plots Beta Y vs S#
+		########################
 		for i in range(0,len(s)):
-			plt.plot(self.s[i], self.betay[i])#, label=dpplabel2[i])
+			plt.plot(self.s[i], self.betay[i])#, label=dpplabel[i])
 		plt.xlabel('S')
 		plt.ylabel('Beta Y')
 		#plt.legend(loc='best')
 		plt.show()
+		
+		
+		
+		####################################################################
+		#This plots mux and muy vs S (higher phase advances @ low energies)#
+		####################################################################
+		f, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+		plt.ylabel('MuY (Bottom) and MuX (Top)')
 		for i in range(0,len(s)):
-			plt.plot(self.s[i], self.mvar1[i])#, label=dpplabel2[i])
+			ax1.plot(self.s[i], self.mux[i])
+		ax1.set_title('S(m)')
+		for i in range(0,len(s)):
+			ax2.plot(self.s[i], self.muy[i])
+		plt.show()
+		
+		
+		
+		############################
+		#This plots Dispersion vs S#
+		############################
+		for i in range(0,len(s)):
+			plt.plot(self.s[i], self.mvar1[i])#, label=dpplabel[i])
 		plt.xlabel('S')
 		plt.ylabel('Dx')
 		#plt.legend(loc='best')
 		plt.show()
+		
+		
+		
+		#########################################
+		#This plots transverse displacement vs S#
+		#########################################
 		for i in range(0,len(s)):
-			plt.plot(self.s[i], self.x[i])#, label=dpplabel2[i])
+			plt.plot(self.s[i], self.x[i])#, label=dpplabel[i])
 		plt.xlabel('S')
 		plt.ylabel('X')
 		#plt.legend(loc='best')
