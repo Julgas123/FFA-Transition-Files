@@ -18,9 +18,9 @@ textwrangler (which I believe uses python 3.6??) - otherwise, one must change 'i
 
 These are my babies.  I'm so proud :') Anyway, these are used to create a transition. The first file uses Dejan Trbojevic's 
 patented unit cell from his carbon gantry and changes it over a user-inputted number of cells. The second file is what I used 
-for my transition presented in the FFAG'17 workshop at Cornell - it can be used as an example to test the transition... 
-JGC.MADX and JGC.SEQ are files created specifically for this, so they must be used alongside TransitionCalc2 (which 
-actuallycreates them). After running 'JGC.MADX', the new magnet strengths must be copy/pasted from the terminal to the 
+for my transition presented in the Fixed-Field Accelerator '17 workshop at Cornell - it can be used as an example to test the 
+transition... JGC.MADX and JGC.SEQ are files created specifically for this, so they must be used alongside TransitionCalc2 
+(which actuallycreates them). After running 'JGC.MADX', the new magnet strengths must be copy/pasted from the terminal to the 
 'JGC.SEQ' file. Sometimes, it may not match all of the way, and the strengths of the magnets will not have changed from the 
 original input. Try identifying a pattern and making an educated guess about what the strengths could/should be and put that 
 into 'JGC.SEQ' before running it again. Then, repreat. 
