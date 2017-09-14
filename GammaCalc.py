@@ -1,12 +1,24 @@
-'''
-This is to calculate the value for one's gamma and beta
-'''
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#This is to calculate the value for one's gamma and beta#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 import numpy as np
+
+
+
+##################################
+#These are the initial parameters#
+##################################
 
 Massp = 938.27208	# Mass of a Proton (MeV/c^2)
 e = 1.602177E-19	# Elementary Charge
 clight = 299792458	# Speed of Light
 Gx = 150
+
+
+
+###############################################################################
+#This function prints the values of the relativistic beta, gamma, and momentum#
+###############################################################################
 
 def Gamma():
 		KE = float(input("Please input value for Kinetic Energy (MeV): "))
@@ -25,22 +37,3 @@ def Gamma():
 		else: 
 			print("Next time, try 'Y' or 'N'.")
 Gamma()
-
-def MRig():
-    a = float(input("Please input lower value for Kinetic Energy range (MeV): "))
-    b = float(input("Please input upper value for Kinetic Energy range (MeV): "))
-    c = float(input("Please input number of Kinetic Energies: "))
-    KE = np.linspace(a,b,c)
-    Erest = Massp
-    Gamma = []
-    Etot = []
-    P = []
-    K = []
-    for i in range(0,len(KE)):
-        Gamma.append((KE[i]/(Erest)) + 1)
-        Etot.append(Gamma[i]*Massp/1000)
-        P.append(3.3356*np.sqrt(Etot[i]**2 - (Massp/1000)**2))
-        K.append(Gx/(P[i]))
-    print(P)
-    print(K)
-#MRig()
