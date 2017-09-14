@@ -1,8 +1,14 @@
-'''
-This file is designed to read in data from a file, parse it, and graph it
-'''
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#This file is designed to read in data from a file, parse it, and graph it#
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+
+##################################
+#These are the initial parameters#
+##################################
 
 MassP = .938272
 KineticEnergy = .150 #GeV
@@ -10,14 +16,31 @@ Gamma = KineticEnergy/MassP + 1
 Beta = np.sqrt(1 - (1/Gamma)**2)
 Pc0 = 0.551345285642 # Corresponds to 150 Mev
 
+
+
+#########################################
+#This only works with the PTC_TWISS LOOP#
+#########################################
+
 class Grapher(object):
 
-	# THhis is designed to take outputs from the PTC_TWISS loop
+	
+	
+	############################################
+	#This constructor opens the file to read it#
+	############################################
+	
 	def __init__(self):
 		self.file_object = open("AUG17I_PTC.LIS","r")
 		self.reader()
 	
-	def reader(self):
+	
+	
+	##########################################
+	#This function creates the relevant lists#
+	##########################################
+	
+	def reader(self): # Many are hashed to keep memory free
 		line = self.file_object.readline()
 		#length = []
 		#alpha_c = []         
@@ -95,6 +118,13 @@ class Grapher(object):
 		K = int((len(Linetemp)-1)/9)
 		#print(Linetemp)
 		i = 1 
+		
+		
+		
+		############################################
+		#This loop appends the data for each energy#
+		############################################
+		
 		while i < K:
 			if i <= 1:
 				Linetemp2.append(Linetemp[7])
@@ -102,10 +132,24 @@ class Grapher(object):
 			elif i > 1:
 				Linetemp2.append(Linetemp[(7+9*i)])
 				i = i + 1
+				
+		
+		
+		#########################################################
+		#This loop effectively gets rid of one layer of brackets#
+		#########################################################
+		
 		for j in range(0,len(Linetemp2)):
 			Linetemp3.append([j])
 			Linetemp3[j] = Linetemp2[j].split()
 		#print(Linetemp3)
+		
+		
+		
+		#####################################################
+		#This loop appends the relevant variable to its list#
+		#####################################################
+		
 		for k in range(0,len(Linetemp3)):
 			#length.append(float(Linetemp3[k][0]))
 			#alpha_c.append(float(Linetemp3[k][1]))
@@ -176,6 +220,12 @@ class Grapher(object):
 			#ptcomin.append(float(Linetemp3[k][66]))
 		#print(deltap)
 		self.GraphMaker(q1,q2,beta_x_max,beta_y_max,disp1max,disp2max,deltap,xcomax,ycomax)
+	
+	
+	
+	##########################################
+	#This function is pretty self explanatory#
+	##########################################
 		
 	def GraphMaker(self,q1,q2,betx,bety,D1,D2,dpp,xco,yco):
 		self.q1 = q1
@@ -193,28 +243,40 @@ class Grapher(object):
 		self.KE.reverse()
 		self.xcomax = xco
 		self.ycomax = yco
+		
+		
+		
+		########################
+		#This plots tunes vs KE#
+		########################
 		plt.plot(self.KE, self.q1, 'r-', label='q1')
 		plt.plot(self.KE, self.q2, 'b-', label='q2')
 		plt.xlabel('Kinetic Energy (MeV)')
 		plt.ylabel('q1 and q2')
 		plt.legend(loc='best')
 		plt.show()
+		
+		
+		
+		##################################
+		#This plots betax and betay vs KE#
+		##################################
 		plt.plot(self.KE, self.beta_x_max, 'r-', label='Beta x Max')
 		plt.plot(self.KE, self.beta_y_max, 'b-', label='Beta y Max')
 		plt.xlabel('Kinetic Energy (MeV)')
 		plt.ylabel('Beta x and y max')
 		plt.legend(loc='best')
 		plt.show()
+		
+		
+		
+		###############################
+		#This plots X Dispersion vs KE#
+		###############################
 		plt.plot(self.KE, self.disp1max, 'r-', label='X Dispersion Max')
 		plt.xlabel('Kinetic Energy (MeV)')
 		plt.ylabel('Disp1max')
 		plt.legend(loc='best')
 		plt.show()
-		plt.plot(self.KE, self.xcomax, 'r-', label='xcomax')
-		plt.plot(self.KE, self.ycomax, 'b-', label='ycomax')
-		plt.xlabel('Kinetic Energy (MeV)')
-		plt.ylabel('xcomax and ycomax')
-		plt.legend(loc='best')
-		plt.show()
-
+		
 G = Grapher()
